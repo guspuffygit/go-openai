@@ -184,10 +184,10 @@ func (c *Client) setCommonHeaders(req *http.Request) {
 	// https://learn.microsoft.com/en-us/azure/cognitive-services/openai/reference#authentication
 	// Azure API Key authentication
 	if c.config.APIType == APITypeAzure || c.config.APIType == APITypeCloudflareAzure {
-		req.Header.Set(AzureAPIKeyHeader, c.config.authToken)
-	} else if c.config.authToken != "" {
+		req.Header.Set(AzureAPIKeyHeader, c.config.AuthToken)
+	} else if c.config.AuthToken != "" {
 		// OpenAI or Azure AD authentication
-		req.Header.Set("Authorization", fmt.Sprintf("Bearer %s", c.config.authToken))
+		req.Header.Set("Authorization", fmt.Sprintf("Bearer %s", c.config.AuthToken))
 	}
 	if c.config.OrgID != "" {
 		req.Header.Set("OpenAI-Organization", c.config.OrgID)

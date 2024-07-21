@@ -155,6 +155,10 @@ type CompletionRequest struct {
 	// refs: https://platform.openai.com/docs/api-reference/completions/create#completions/create-logit_bias
 	LogitBias map[string]int `json:"logit_bias,omitempty"`
 	User      string         `json:"user,omitempty"`
+
+	// VLLM parameters
+	TopK              int     `json:"top_k,omitempty"`
+	RepetitionPenalty float32 `json:"repetition_penalty,omitempty"`
 }
 
 // CompletionChoice represents one of possible completions.
@@ -200,15 +204,6 @@ func (c *Client) CreateCompletion(
 	}
 
 	urlSuffix := "/completions"
-	if !checkEndpointSupportsModel(urlSuffix, request.Model) {
-		err = ErrCompletionUnsupportedModel
-		return
-	}
-
-	if !checkPromptType(request.Prompt) {
-		err = ErrCompletionRequestPromptTypeNotSupported
-		return
-	}
 
 	req, err := c.newRequest(ctx, http.MethodPost, c.fullURL(urlSuffix, request.Model), withBody(request))
 	if err != nil {
