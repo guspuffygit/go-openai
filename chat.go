@@ -220,6 +220,37 @@ type ChatCompletionRequest struct {
 	StreamOptions *StreamOptions `json:"stream_options,omitempty"`
 	// Disable the default behavior of parallel tool calls by setting it: false.
 	ParallelToolCalls any `json:"parallel_tool_calls,omitempty"`
+
+	// VLLM Parameters
+	BestOf                     int                    `json:"best_of,omitempty"`
+	UseBeamSearch              bool                   `json:"use_beam_search,omitempty"`
+	TopK                       int                    `json:"top_k,omitempty"`
+	MinP                       float64                `json:"min_p,omitempty"`
+	RepetitionPenalty          float64                `json:"repetition_penalty,omitempty"`
+	LengthPenalty              float64                `json:"length_penalty,omitempty"`
+	StopTokenIds               []int                  `json:"stop_token_ids,omitempty"`
+	IncludeStopStrInOutput     bool                   `json:"include_stop_str_in_output,omitempty"`
+	IgnoreEos                  bool                   `json:"ignore_eos,omitempty"`
+	MinTokens                  int                    `json:"min_tokens,omitempty"`
+	SkipSpecialTokens          bool                   `json:"skip_special_tokens,omitempty"`
+	SpacesBetweenSpecialTokens bool                   `json:"spaces_between_special_tokens,omitempty"`
+	PromptLogprobs             int                    `json:"prompt_logprobs,omitempty"`
+	Echo                       bool                   `json:"echo,omitempty"`
+	AddGenerationPrompt        bool                   `json:"add_generation_prompt,omitempty"`
+	ContinueFinalMessage       bool                   `json:"continue_final_message,omitempty"`
+	AddSpecialTokens           bool                   `json:"add_special_tokens,omitempty"`
+	Documents                  []map[string]string    `json:"documents,omitempty"`
+	ChatTemplate               string                 `json:"chat_template,omitempty"`
+	ChatTemplateKwargs         map[string]interface{} `json:"chat_template_kwargs,omitempty"`
+	GuidedJson                 interface{}            `json:"guided_json,omitempty"`
+	GuidedRegex                string                 `json:"guided_regex,omitempty"`
+	GuidedChoice               []string               `json:"guided_choice,omitempty"`
+	GuidedGrammar              string                 `json:"guided_grammar,omitempty"`
+	GuidedDecodingBackend      string                 `json:"guided_decoding_backend,omitempty"`
+	GuidedWhitespacePattern    string                 `json:"guided_whitespace_pattern,omitempty"`
+	Priority                   int                    `json:"priority,omitempty"`
+	RequestId                  string                 `json:"request_id,omitempty"`
+	// TruncatePromptTokens
 }
 
 type StreamOptions struct {

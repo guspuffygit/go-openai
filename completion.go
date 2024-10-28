@@ -156,9 +156,28 @@ type CompletionRequest struct {
 	LogitBias map[string]int `json:"logit_bias,omitempty"`
 	User      string         `json:"user,omitempty"`
 
-	// VLLM parameters
-	TopK              int     `json:"top_k,omitempty"`
-	RepetitionPenalty float32 `json:"repetition_penalty,omitempty"`
+	// VLLM Parameters
+	UseBeamSearch              bool        `json:"use_beam_search,omitempty"`
+	TopK                       int         `json:"top_k,omitempty"`
+	MinP                       float64     `json:"min_p,omitempty"`
+	RepetitionPenalty          float64     `json:"repetition_penalty,omitempty"`
+	LengthPenalty              float64     `json:"length_penalty,omitempty"`
+	StopTokenIds               []int       `json:"stop_token_ids,omitempty"`
+	IncludeStopStrInOutput     bool        `json:"include_stop_str_in_output,omitempty"`
+	IgnoreEos                  bool        `json:"ignore_eos,omitempty"`
+	MinTokens                  int         `json:"min_tokens,omitempty"`
+	SkipSpecialTokens          bool        `json:"skip_special_tokens,omitempty"`
+	SpacesBetweenSpecialTokens bool        `json:"spaces_between_special_tokens,omitempty"`
+	AllowedTokenIds            []int       `json:"allowed_token_ids,omitempty"`
+	PromptLogprobs             int         `json:"prompt_logprobs,omitempty"`
+	AddSpecialTokens           bool        `json:"add_special_tokens,omitempty"`
+	GuidedJson                 interface{} `json:"guided_json,omitempty"`
+	GuidedRegex                string      `json:"guided_regex,omitempty"`
+	GuidedChoice               []string    `json:"guided_choice,omitempty"`
+	GuidedGrammar              string      `json:"guided_grammar,omitempty"`
+	GuidedDecodingBackend      string      `json:"guided_decoding_backend,omitempty"`
+	GuidedWhitespacePattern    string      `json:"guided_whitespace_pattern,omitempty"`
+	Priority                   int         `json:"priority,omitempty"`
 }
 
 // CompletionChoice represents one of possible completions.
