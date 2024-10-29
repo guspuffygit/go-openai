@@ -16,15 +16,17 @@ type TokenizeRequest struct {
 }
 
 type ChatTokenizeRequest struct {
-	TokenizeRequest
+	Model                string                  `json:"model"`
 	Messages             []ChatCompletionMessage `json:"messages"`
+	AddSpecialTokens     bool                    `json:"add_special_tokens,omitempty"`
 	AddGenerationPrompt  bool                    `json:"add_generation_prompt,omitempty"`
 	ContinueFinalMessage bool                    `json:"continue_final_message,omitempty"`
 }
 
 type TextTokenizeRequest struct {
-	TokenizeRequest
-	Prompt string `json:"prompt"`
+	Model            string `json:"model"`
+	Prompt           string `json:"prompt"`
+	AddSpecialTokens bool   `json:"add_special_tokens,omitempty"`
 }
 
 type TokenizeResponse struct {
