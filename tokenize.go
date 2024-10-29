@@ -1,6 +1,7 @@
 package openai
 
 import (
+	"bytes"
 	"context"
 	"net/http"
 )
@@ -79,7 +80,8 @@ func (c *Client) CreateTokenizeRaw(
 	model string,
 	body []byte,
 ) (response TokenizeResponse, err error) {
-	req, err := c.newRequest(ctx, http.MethodPost, c.fullURL(tokenizeSuffix, model), withBody(body))
+	bodyReader := bytes.NewReader(body)
+	req, err := c.newRequest(ctx, http.MethodPost, c.fullURL(tokenizeSuffix, model), withBody(bodyReader))
 	if err != nil {
 		return
 	}
