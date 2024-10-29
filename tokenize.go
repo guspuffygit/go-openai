@@ -18,7 +18,13 @@ type ChatTokenizeRequest struct {
 	ContinueFinalMessage bool                    `json:"continue_final_message,omitempty"`
 }
 
-type ChatTokenizeResponse struct {
+type TextTokenizeRequest struct {
+	Model            string `json:"model"`
+	Prompt           string `json:"prompt"`
+	AddSpecialTokens bool   `json:"add_special_tokens,omitempty"`
+}
+
+type TokenizeResponse struct {
 	Count          int   `json:"count"`
 	MaxModelLength int   `json:"max_model_len"`
 	Tokens         []int `json:"tokens"`
@@ -40,7 +46,20 @@ type ChatDetokenizeResponse struct {
 func (c *Client) CreateChatTokenize(
 	ctx context.Context,
 	request ChatTokenizeRequest,
-) (response ChatTokenizeResponse, err error) {
+) (response TokenizeResponse, err error) {
+	req, err := c.newRequest(ctx, http.MethodPost, c.fullURL(tokenizeSuffix, request.Model), withBody(request))
+	if err != nil {
+		return
+	}
+
+	err = c.sendRequest(req, &response)
+	return
+}
+
+func (c *Client) CreateTextTokenize(
+	ctx context.Context,
+	request TextTokenizeRequest,
+) (response TokenizeResponse, err error) {
 	req, err := c.newRequest(ctx, http.MethodPost, c.fullURL(tokenizeSuffix, request.Model), withBody(request))
 	if err != nil {
 		return
