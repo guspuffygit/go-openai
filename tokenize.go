@@ -10,18 +10,21 @@ const (
 	detokenizeSuffix = "/detokenize"
 )
 
+type TokenizeRequest struct {
+	Model            string `json:"model"`
+	AddSpecialTokens bool   `json:"add_special_tokens,omitempty"`
+}
+
 type ChatTokenizeRequest struct {
-	Model                string                  `json:"model"`
+	TokenizeRequest
 	Messages             []ChatCompletionMessage `json:"messages"`
 	AddGenerationPrompt  bool                    `json:"add_generation_prompt,omitempty"`
-	AddSpecialTokens     bool                    `json:"add_special_tokens,omitempty"`
 	ContinueFinalMessage bool                    `json:"continue_final_message,omitempty"`
 }
 
 type TextTokenizeRequest struct {
-	Model            string `json:"model"`
-	Prompt           string `json:"prompt"`
-	AddSpecialTokens bool   `json:"add_special_tokens,omitempty"`
+	TokenizeRequest
+	Prompt string `json:"prompt"`
 }
 
 type TokenizeResponse struct {
@@ -61,6 +64,20 @@ func (c *Client) CreateTextTokenize(
 	request TextTokenizeRequest,
 ) (response TokenizeResponse, err error) {
 	req, err := c.newRequest(ctx, http.MethodPost, c.fullURL(tokenizeSuffix, request.Model), withBody(request))
+	if err != nil {
+		return
+	}
+
+	err = c.sendRequest(req, &response)
+	return
+}
+
+func (c *Client) CreateTokenizeRaw(
+	ctx context.Context,
+	model string,
+	body []byte,
+) (response TokenizeResponse, err error) {
+	req, err := c.newRequest(ctx, http.MethodPost, c.fullURL(tokenizeSuffix, model), withBody(body))
 	if err != nil {
 		return
 	}
