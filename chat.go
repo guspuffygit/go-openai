@@ -222,34 +222,34 @@ type ChatCompletionRequest struct {
 	ParallelToolCalls any `json:"parallel_tool_calls,omitempty"`
 
 	// VLLM Parameters
-	BestOf                     int                    `json:"best_of,omitempty"`
-	UseBeamSearch              bool                   `json:"use_beam_search,omitempty"`
-	TopK                       int                    `json:"top_k,omitempty"`
-	MinP                       float64                `json:"min_p,omitempty"`
-	RepetitionPenalty          float64                `json:"repetition_penalty,omitempty"`
-	LengthPenalty              float64                `json:"length_penalty,omitempty"`
-	StopTokenIds               []int                  `json:"stop_token_ids,omitempty"`
-	IncludeStopStrInOutput     bool                   `json:"include_stop_str_in_output,omitempty"`
-	IgnoreEos                  bool                   `json:"ignore_eos,omitempty"`
-	MinTokens                  int                    `json:"min_tokens,omitempty"`
-	SkipSpecialTokens          bool                   `json:"skip_special_tokens,omitempty"`
-	SpacesBetweenSpecialTokens bool                   `json:"spaces_between_special_tokens,omitempty"`
-	PromptLogprobs             int                    `json:"prompt_logprobs,omitempty"`
-	Echo                       bool                   `json:"echo,omitempty"`
-	AddGenerationPrompt        bool                   `json:"add_generation_prompt,omitempty"`
-	ContinueFinalMessage       bool                   `json:"continue_final_message,omitempty"`
-	AddSpecialTokens           bool                   `json:"add_special_tokens,omitempty"`
-	Documents                  []map[string]string    `json:"documents,omitempty"`
-	ChatTemplate               string                 `json:"chat_template,omitempty"`
-	ChatTemplateKwargs         map[string]interface{} `json:"chat_template_kwargs,omitempty"`
-	GuidedJson                 interface{}            `json:"guided_json,omitempty"`
-	GuidedRegex                string                 `json:"guided_regex,omitempty"`
-	GuidedChoice               []string               `json:"guided_choice,omitempty"`
-	GuidedGrammar              string                 `json:"guided_grammar,omitempty"`
-	GuidedDecodingBackend      string                 `json:"guided_decoding_backend,omitempty"`
-	GuidedWhitespacePattern    string                 `json:"guided_whitespace_pattern,omitempty"`
-	Priority                   int                    `json:"priority,omitempty"`
-	RequestId                  string                 `json:"request_id,omitempty"`
+	BestOf                     *int                    `json:"best_of"`
+	UseBeamSearch              *bool                   `json:"use_beam_search"`
+	TopK                       *int                    `json:"top_k"`
+	MinP                       *float64                `json:"min_p"`
+	RepetitionPenalty          *float64                `json:"repetition_penalty"`
+	LengthPenalty              *float64                `json:"length_penalty"`
+	StopTokenIds               *[]int                  `json:"stop_token_ids"`
+	IncludeStopStrInOutput     *bool                   `json:"include_stop_str_in_output"`
+	IgnoreEos                  *bool                   `json:"ignore_eos"`
+	MinTokens                  *int                    `json:"min_tokens"`
+	SkipSpecialTokens          *bool                   `json:"skip_special_tokens"`
+	SpacesBetweenSpecialTokens *bool                   `json:"spaces_between_special_tokens"`
+	PromptLogprobs             *int                    `json:"prompt_logprobs"`
+	Echo                       *bool                   `json:"echo"`
+	AddGenerationPrompt        *bool                   `json:"add_generation_prompt"`
+	ContinueFinalMessage       *bool                   `json:"continue_final_message"`
+	AddSpecialTokens           *bool                   `json:"add_special_tokens"`
+	Documents                  *[]map[string]string    `json:"documents"`
+	ChatTemplate               *string                 `json:"chat_template"`
+	ChatTemplateKwargs         *map[string]interface{} `json:"chat_template_kwargs"`
+	GuidedJson                 *interface{}            `json:"guided_json"`
+	GuidedRegex                *string                 `json:"guided_regex"`
+	GuidedChoice               *[]string               `json:"guided_choice"`
+	GuidedGrammar              *string                 `json:"guided_grammar"`
+	GuidedDecodingBackend      *string                 `json:"guided_decoding_backend"`
+	GuidedWhitespacePattern    *string                 `json:"guided_whitespace_pattern"`
+	Priority                   *int                    `json:"priority"`
+	RequestId                  *string                 `json:"request_id"`
 	// TruncatePromptTokens
 }
 
